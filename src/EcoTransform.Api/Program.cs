@@ -1,14 +1,22 @@
+using EcoTransform.Api.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Registrar los servicios en el contenedor de dependencias.
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+// Documentación OpenAPI de la API (más información en https://aka.ms/aspnet/openapi).
 builder.Services.AddOpenApi();
+
+// Registrar el contexto de base de datos usando la cadena de conexión "EcoTransformDb" del appsettings.json.
+builder.Services.AddDbContext<EcoTransformDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EcoTransformDb")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar el pipeline de peticiones HTTP.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
