@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/EcoTransform.Api/EcoTransform.Api.csproj" />
+  </Folder>
+</Solution>
