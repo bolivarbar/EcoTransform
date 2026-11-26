@@ -1,6 +1,18 @@
 @EcoTransform.Api_HostAddress = http://localhost:5069
 
-GET {{EcoTransform.Api_HostAddress}}/weatherforecast/
+### Listar todos los proveedores
+GET {{EcoTransform.Api_HostAddress}}/api/proveedores
 Accept: application/json
 
-###
+### Registrar un proveedor de prueba
+POST {{EcoTransform.Api_HostAddress}}/api/proveedores
+Content-Type: application/json
+
+{
+  "nombre": "Recicladora Andina",
+  "identificacion": "1712345678",
+  "telefono": "0991234567",
+  "correo": "contacto@recicladoraandina.com",
+  "direccion": "Quito, Pichincha",
+  "activo": true
+}
