@@ -65,6 +65,77 @@ namespace EcoTransform.Api.Migrations
 
                     b.ToTable("Proveedores", (string)null);
                 });
+
+            modelBuilder.Entity("EcoTransform.Api.Entities.TipoMaterial", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("ContaminacionMaxima")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal>("PurezaMinima")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<int>("Ruta")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Nombre")
+                        .IsUnique();
+
+                    b.ToTable("TiposMaterial", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Activo = true,
+                            ContaminacionMaxima = 10m,
+                            Descripcion = "Plástico PET limpio, sin tapas ni etiquetas.",
+                            Nombre = "PET (botellas de plástico)",
+                            PurezaMinima = 90m,
+                            Ruta = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Activo = true,
+                            ContaminacionMaxima = 15m,
+                            Descripcion = "Neumáticos fuera de uso, con acero y fibras por separar.",
+                            Nombre = "Caucho de neumáticos usados",
+                            PurezaMinima = 85m,
+                            Ruta = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Activo = true,
+                            ContaminacionMaxima = 5m,
+                            Descripcion = "Restos de cocina y vegetales, sin plásticos ni vidrio.",
+                            Nombre = "Residuos orgánicos para compost",
+                            PurezaMinima = 95m,
+                            Ruta = 3
+                        });
+                });
 #pragma warning restore 612, 618
         }
     }
